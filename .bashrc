@@ -6,7 +6,7 @@ echo "*meain* : Just don't code shit"
 echo ""
 
 #That thing I am using to show the most creepy reminder of all time
-#figlet Ford Mustang!
+figlet Ford Mustang!
 
 #This is to change the long text to just a %
 PS1="% : "
