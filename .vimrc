@@ -135,7 +135,7 @@ filetype plugin on
 filetype indent on
 
 "Enable copy paste from other sources
-set clipboard unknown
+set clipboard=unnamed
 
 " tabs and spaces handling
 set expandtab
