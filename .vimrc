@@ -134,6 +134,9 @@ endif
 filetype plugin on
 filetype indent on
 
+"Enable copy paste from other sources
+set clipboard unknown
+
 " tabs and spaces handling
 set expandtab
 set tabstop=4
