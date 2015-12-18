@@ -8,7 +8,7 @@ echo ""
 #A small tool to display the deatails of a system
 #screenfetch
 
-cowsay *angel - meain*
+cowsay *meain*
 #That thing I am using to show the most creepy reminder of all time
 #figlet Ford Mustang!
 
