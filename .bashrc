@@ -5,6 +5,9 @@ echo ""
 echo "*meain* : Just don't code shit" 
 echo ""
 
+#Why not
+alias love = "exit"
+
 #A small tool to display the deatails of a system
 #screenfetch
 
