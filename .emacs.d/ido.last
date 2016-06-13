@@ -1,0 +1,59 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/" . "abinsimon/")
+ ("/" . "Users/")
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/ai/static/ai/" . "css/")
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/ai/static/" . "ai/")
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/ai/" . "static/")
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/" . "ai/")
+ ("/Users/abinsimon/Documents/Projects/eywa/" . "eywa/")
+ ("/Users/abinsimon/Documents/Projects/" . "eywa/")
+ ("/Users/abinsimon/Documents/" . "Projects/")
+ ("/Users/abinsimon/" . "Documents/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/abinsimon/"
+ "/Users/abinsimon/Documents/Projects/eywa/eywa/"
+ "/Users/abinsimon/Documents/Projects/eywa/eywa/ai/static/ai/css/"
+ "/Users/abinsimon/Documents/Projects/eywa/eywa/ai/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ ".emacs"
+ "manage.py"
+ "tmuxcopyhotfix.sh"
+ ".vimrc"
+ "chatstyle.stylus"
+ "serializers.py"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/abinsimon/" (22366 25731 0 0) "tmuxcopyhotfix.sh" "sleepwatcher_2.2/" "readme.md" "Public/" "Pictures/" "node_modules/" "NetBeansProjects/" "Music/" "Movies/" "ml/" "LICENSE" "Library/" "Justinmind/" "jekyll/" "Downloads/" "dotemacs/" "Documents/" "Desktop/" "Create a SVG Loading Animation with Adobe Illustrator-1lmFMsrLgwM.mp4" "bin/" "Applications/" "AndroidStudioProjects/" ".zshrc.pre-oh-my-zsh" ".zshrc" ".zsh_history" ".zsh-update" ".zcompdump-Abin’s MacBook Air-5.2" ".zcompdump" ".z.27534" ".z-e" ".z" ".xinitrc.old" ".Xauthority" ".wget-hsts" ".w3m/" ".vscode/" ".vimrcx" ".vimrc" ".vimperator/" ".vimmru" ".viminfo" ".vim_mru_files" ".vim/" ".undodir/" ".Trash/" ".tox/" ".tmux.conf" ".tmux/" ".theano/" ".test.sh.swp" ".terminalnotesdata" ".swp" ".ssh/" ".spacemacs" ".rnd" ".repoconfig/" ".repo_.gitconfig.json" ".pagekite.rc" ".p2/" ".oracle_jre_usage/" ".oh-my-zsh/" ".nvimlog" ".npm/" ".nchsoftware/" ".Motorola Mobility/" ".matplotlib/" ".MacOSX/" ".loginimages/" ".local/" ".lesshst" ".keras/" ".ipython/" ".inputrc" ".imagescript/" ".idlerc/" ".i3status.conf" ".hushlogin" ".htoprc" ".histfile" ".gvimrc" ".gradle/" ".gnome2/" ".gitignorex" ".gitignore" ".gitconfig" ".git/" ".ggg.swp" ".gem/" ".ff.swp" ".emacs.d/" ".emacs" ".elinks/" ".electron/" ".eclipse/" ".DS_Store" ".dropbox/" ".dkjh.swp" ".datastorage/" ".cups/" ".cookiecutters/" ".cookiecutter_replay/" ".configprops/" ".config/" ".CFUserTextEncoding" ".cache/" ".bashrc" ".bash_sessions/" ".bash_profile.save.2" ".bash_profile.save.1" ".bash_profile.save" ".bash_profile.macports-saved_2015-10-23_at_16:04:25" ".bash_profile.bak" ".bash_profile" ".bash_history" ".bash-it/" ".atom/" ".applescripts/" ".android/" "../" "./")
+
+ ("/Users/" (22278 21527 0 0) "Shared/" "Guest/" "abinsimon/" ".localized" "../" "./")
+
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/ai/static/ai/css/" (22363 5064 0 0) "chatstyle.stylus" "bootstrap.min.css.map" "bootstrap.min.css" "bootstrap.css.map" "bootstrap.css" "bootstrap-theme.min.css.map" "bootstrap-theme.min.css" "bootstrap-theme.css.map" "bootstrap-theme.css" "animate.css" ".DS_Store" "../" "./")
+
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/ai/static/ai/" (22351 48676 0 0) "js/" "images/" "fonts/" "css/" ".DS_Store" "../" "./")
+
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/ai/static/" (22215 9218 0 0) "ai/" ".DS_Store" "../" "./")
+
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/ai/" (22361 39225 0 0) "wolframapi.pyc" "views.pyc" "views.py" "urls.pyc" "urls.py" "tests.py" "templates/" "static/" "serializers.pyc" "serializers.py" "reply.pyc" "reply.py" "models.pyc" "models.py" "migrations/" "imageapi.pyc" "forms.pyc" "forms.py" "consumers.pyc" "consumers.py" "apps.py" "apis/" "apihandler.pyc" "apihandler.py" "aimlbot.pyc" "admin.pyc" "admin.py" "__init__.pyc" "__init__.py" ".DS_Store" "../" "./")
+
+ ("/Users/abinsimon/Documents/Projects/eywa/eywa/" (22363 5064 0 0) "tags" "static/" "requirements.txt" "README.md" "manage.py" "eywa/" "db.sqlite3" "ai/" ".tern-project" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/abinsimon/Documents/Projects/eywa/" (22356 64716 0 0) "pip-selfcheck.json" "lib/" "include/" "eywa/" "bin/" ".Python" ".DS_Store" ".cache/" "../" "./")
+
+ ("/Users/abinsimon/Documents/Projects/" (22365 13467 0 0) "v/" "tags" "popupbox/" "neek/" "modules/" "meain.github.io/" "eywa/" "crox/" "AcDisplay/" ".DS_Store" ".cache/" "../" "./")
+
+ ("/Users/abinsimon/Documents/" (22365 35082 0 0) "Tutorials/" "Projects/" "Others/" "Multimedia/" "IMG_7530-01-01.jpg" "Documents/" "Code/" ".localized" ".DS_Store" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
