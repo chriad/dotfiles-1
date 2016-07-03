@@ -262,17 +262,17 @@ set splitbelow
 set splitright
 
 " Proper indenting on pasting
-nnoremap p  "*]p`]
+nnoremap p  "+]p`]
 
 " Copy and paste to the system clipboard - this also helps with dd or x
 " replacing the content in the clipboard
-nnoremap  y "*y
-nnoremap  Y "*Y
-nnoremap  P "*P
-vnoremap y "*y`]
-vnoremap Y "*Y
-vnoremap p "*p
-vnoremap P "*P
+nnoremap  y "+y
+nnoremap  Y "+Y
+nnoremap  P "+P
+vnoremap y "+y`]
+vnoremap Y "+Y
+vnoremap p "+p
+vnoremap P "+P
 
 "Get back to where you were easily
 nnoremap gg mpgg
