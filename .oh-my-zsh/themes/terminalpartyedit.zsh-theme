@@ -1,32 +1,6 @@
-function battery_charge() {
-    if [ -e ~/bin/batcharge.py ]
-        then
-            echo `python ~/bin/batcharge.py`
-    else
-        echo '';
-    fi
-}
-
-function get_note_count() {
-    if [ -e ~/bin/timedisplay.py ]
-        then
-            echo `python ~/bin/terminalnote.py n`
-    else
-        echo '';
-    fi
-}
-
-function time_display() {
-    if [ -e ~/bin/timedisplay.py ]
-        then
-            echo `python ~/bin/timedisplay.py`
-    else
-        echo '';
-    fi
-}
 PROMPT='%(?,%{$fg[green]%},%{$fg[red]%}) x '
 # RPS1='%{$fg[blue]%}%~%{$reset_color%} '
-RPS1='%{$fg[white]%}%2~$(git_prompt_info) $(time_display) $(battery_charge) $(get_note_count)'
+RPS1='%{$fg[white]%}%2~$(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[yellow]%}("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"

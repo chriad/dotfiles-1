@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/abinsimon/.oh-my-zsh
+  export ZSH=/home/meain/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -24,7 +24,7 @@ ZSH_THEME="terminalpartyedit"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -40,7 +40,7 @@ DISABLE_AUTO_TITLE="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd.mm.yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -53,25 +53,13 @@ plugins=(git python brew osx extract web-search zsh-autosuggestions zsh-syntax-h
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
+# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-
-# Setting PATH for Python 2.7
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH
-
-##pipsi install addition to the path variable
-export PATH="/Users/abinsimon/.local/bin:$PATH"
-
-. `brew --prefix`/etc/profile.d/z.sh
 
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -101,30 +89,8 @@ rmd () {
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#--------------------------------------------------------------------------------------------
 
 # Custom
-
-echo ""
-hours=`date +%H`
-if [ $hours -le 12 ]
-then
-    echo "Good morning *meain*, what's up? How you doing?" | fmt -c -w $COLUMNS | lolcat
-else
-    if [ $hours -le 16 ]
-    then
-        echo "Good afternoon *meain*, cool to see you up here!" | fmt -c -w $COLUMNS | lolcat
-    elif [ $hours -le 18 ]
-    then
-        echo "Good evening *meain*, maybe go out and get some fresh air?" | fmt -c -w $COLUMNS | lolcat
-    elif [ $hours -le 24 ]
-    then
-        echo "Good evening *meain*, maybe sleep early today?" | fmt -c -w $COLUMNS | lolcat
-    else
-        echo "Good night *meain*, better get some sleep kid!" | fmt -c -w $COLUMNS | lolcat
-    fi
-fi
-echo ""
 
 # source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval $(thefuck --alias)
@@ -135,15 +101,13 @@ alias ll='ls -A -l'
 alias l='ls'
 alias la='ls -A'
 alias lr='ls -lRht'
-alias c='clear && echo "\n¯\_(ツ)_/¯\n" | fmt -c -w $COLUMNS | lolcat'
-alias q="jobs -l | grep 'tmuxcopyhotfix.sh' | grep -v grep | sed 's:.*\ [+/-]\ ::g' | sed 's:\ .*::g' | xargs kill && exit"
-alias :q="jobs -l | grep 'tmuxcopyhotfix.sh' | grep -v grep | sed 's:.*\ [+/-]\ ::g' | sed 's:\ .*::g' | xargs kill && exit"
+alias c='clear'
+alias q="exit"
+alias :q="exit"
 alias mkdir='mkdir -p'
 alias o='open .'
 # alias rm='rm -i'
-alias rm='trash'
 alias ffind='find . -name'
-alias ..='cd ..'
 #Check evey single file for a specific text and print surrounding 2 lines
 alias here='find . -type f -print0|xargs -0 grep -C 2 -i'
 alias server='python -m SimpleHTTPServer '
@@ -216,7 +180,6 @@ alias gcom='git checkout master'
 # More stuff
 
 # Tmux alias - you will probaby have to kill all the hotfix processes at last
-alias tmux="jobs -l | grep 'tmuxcopyhotfix.sh' | grep -v grep | sed 's:.*\ [+/-]\ ::g' | sed 's:\ .*::g' | xargs kill && sh ~/bin/tmuxcopyhotfix.sh & tmux"
 alias ta='tmux attach -t'
 alias tn='tmux new-session -s'
 alias tl='tmux list-sessions'
@@ -242,6 +205,3 @@ alias eywaserver='~/bin/tmuxeywavim.sh'
 
 # Youtube-dl
 alias ydp='youtube-dl -o "%(playlist_index)s_%(title)s.%(ext)s"'
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
