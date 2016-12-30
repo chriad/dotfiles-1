@@ -15,6 +15,6 @@
 [color]
 	ui = auto
 [core]
-    editor = /usr/local/bin/nvim
+	editor = nvim
 [diff "spaceman-diff"]
   command = /Users/abinsimon/.config/spaceman-diff/spaceman-diff
