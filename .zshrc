@@ -89,13 +89,42 @@ rmd () {
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
 # Custom
+echo ""
+hours=`date +%H`
+if [ $hours -le 12 ]
+then
+    echo "Good morning meain, what's up? How you doing?" | fmt -c -w $COLUMNS | lolcat
+else
+    if [ $hours -le 16 ]
+    then
+        echo "Good afternoon meain, good to see you here." | fmt -c -w $COLUMNS | lolcat
+    elif [ $hours -le 18 ]
+    then
+        echo "Good evening meain, maybe go out and get some fresh air?" | fmt -c -w $COLUMNS | lolcat
+    elif [ $hours -le 24 ]
+    then
+        echo "Good evening meain, maybe sleep early today?" | fmt -c -w $COLUMNS | lolcat
+    else
+        echo "Good night meain, better get some sleep kid!" | fmt -c -w $COLUMNS | lolcat
+    fi
+fi
+echo ""
 
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval $(thefuck --alias)
 
-#Alias
+# Use vi mode in zshell
+bindkey -v
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+export KEYTIMEOUT=1
+
+# Alias
 alias ss='ls -lht'
 alias ll='ls -A -l'
 alias l='ls'
@@ -106,9 +135,9 @@ alias q="exit"
 alias :q="exit"
 alias mkdir='mkdir -p'
 alias o='open .'
-# alias rm='rm -i'
 alias ffind='find . -name'
-#Check evey single file for a specific text and print surrounding 2 lines
+alias ..='cd ..'
+# Check evey single file for a specific text and print surrounding 2 lines
 alias here='find . -type f -print0|xargs -0 grep -C 2 -i'
 alias server='python -m SimpleHTTPServer '
 alias tn='tmux new -s'
@@ -121,11 +150,9 @@ alias p='cd ~/Documents/Projects && ls'
 # Alias to get into desktop folder
 alias d='cd ~/Desktop && ls'
 
-# Git alias
-
 # Functions - mostly git
 get_git_files_changed(){
-    git status --short | sed 's:.*\ ::g' | sed 's:.*/::g' | tr '\n' ',' | sed s/,$//g
+	git status --short | grep -v ' D ' | grep -v '?? ' | sed 's:^...::g' | sed 's:.*/::g' | tr '\n' ',' | sed s/,$//g
 }
 get_git_branch(){
     git branch | grep \* | sed s/^\*\ //g
@@ -139,8 +166,8 @@ get_change_message_without_filename(){
 
 # Alias for easier git commits
 # Commit message wihout any s***
-alias gj='git add -u && git commit'
-alias gh="git add -u && git commit -m '"
+alias gh="git add -u && git commit -m"
+alias gv='git add -u && git commit'
 # Message with more information with filename
 alias gvf='git add -u && git commit -m "$(get_change_message)"'
 # Commit message wihout any s*** + push
@@ -160,7 +187,7 @@ alias gbp='git add -u && git commit -m "Bugfix $(get_git_files_changed)" && git 
 # Git add
 alias ga='git add'
 # Easier push to origin master
-alias gp="git push origin $(git branch | grep \* | sed s/^\*\ //g)"
+alias gp="git push origin $(get_git_branch)"
 # Git log and history alias 
 alias ggg='git lh|cat'
 alias gg='git hm|cat'
@@ -168,16 +195,22 @@ alias gggg='git hi|cat'
 alias gl='git lg'
 # Git diff alias
 alias gd='git diff'
-#Git status alias
+# Git status alias
 alias gs='git status'
 alias g='git status -s'
-#Git commit 
+# Git commit 
 alias gcm='git commit'
-#Git checkeout
+# Git checkeout
 alias gco='git checkout'
 alias gcom='git checkout master'
 
 # More stuff
+
+# prev prev command
+get_second_last_command(){
+	history | tail -2 | head -1 | sed 's:.*\ .*\ ..\:...::g'
+}
+alias f='eval $(get_second_last_command)'
 
 # Tmux alias - you will probaby have to kill all the hotfix processes at last
 alias ta='tmux attach -t'
@@ -191,11 +224,12 @@ alias vim="nvim"
 #Just because it happens all the time
 alias ivm='vim'
 alias vm='nvim'
+alias vi='nvim'
 #Open last vim session
 alias viml='nvim -c :SLoad\ zPreviousSession'
 
 # Note taking
-alias k="python ~/bin/terminalnote.py '"
+alias k="python ~/bin/terminalnote.py"
 alias kk='python ~/bin/terminalnote.py k'
 
 # Eywa start
@@ -205,3 +239,28 @@ alias eywaserver='~/bin/tmuxeywavim.sh'
 
 # Youtube-dl
 alias ydp='youtube-dl -o "%(playlist_index)s_%(title)s.%(ext)s"'
+
+# Use hub instead of git
+eval "$(hub alias -s)"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Function for transfer.sh
+transfer() { 
+	if [ $# -eq 0 ]; then
+		echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md";
+		return 1;
+	fi 
+	tmpfile=$( mktemp -t transferXXX );
+	if tty -s; then
+		basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g');
+		curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile;
+	else
+		curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ;
+	fi;
+	cat $tmpfile;
+	rm -f $tmpfile;
+} 
+
+alias meain='echo "Yep thats me, something I can help you with?"'
