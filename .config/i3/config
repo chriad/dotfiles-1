@@ -190,4 +190,4 @@ client.focused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 # Set background image
-exec --no-startup-id feh --bg-fill ~/.backgrounds/background.jpg
+exec --no-startup-id feh --bg-scale ~/.backgrounds/background.jpg
