@@ -1,4 +1,4 @@
-PROMPT='%(?,%{$fg[green]%},%{$fg[red]%}) x '
+PROMPT='%(?,%{$fg[green]%},%{$fg[red]%}) : '
 # Vi mode display
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg_bold[blue]%} : %{$reset_color%}"
