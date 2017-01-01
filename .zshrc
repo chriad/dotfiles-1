@@ -136,6 +136,7 @@ alias :q="exit"
 alias mkdir='mkdir -p'
 alias o='open .'
 alias ffind='find . -name'
+alias rm='trash'
 alias ..='cd ..'
 # Check evey single file for a specific text and print surrounding 2 lines
 alias here='find . -type f -print0|xargs -0 grep -C 2 -i'
