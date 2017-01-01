@@ -73,6 +73,11 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+# cycling through workspace
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+# switch to previous tab
+bindsym $mod+grave workspace back_and_forth
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -93,7 +98,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # lock system
-bindsym $mod+grave exec "i3lock -ui ~/.backgrounds/meain.png"
+bindsym $mod+Shift+grave exec "i3lock -ui ~/.backgrounds/meain.png"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -134,3 +139,8 @@ client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 # Set background image
 exec --no-startup-id feh --bg-scale ~/.backgrounds/background.jpg
+
+# gaps config for i3 gaps
+gaps inner 7
+gaps outer 1
+smart_gaps on
