@@ -62,12 +62,20 @@ Return a list of installed packages or nil for every skipped package."
 			  `evil-surround
 			  `git-gutter
 			  `drag-stuff
-			  `evil-surround
-			  `linum-relative)
+			  `evil-surround)
 
 ;; Evil mode
 (require 'evil)
 (evil-mode t)
+
+;; yank and copy to clipboard (rest everything into the kill rig)
+;; (with-eval-after-load 'evil-maps
+;;   (define-key evil-normal-state-map (kbd "d") 'kill))
+(evil-define-operator evil-delete-into-null-register (beg end type register yank-handler)
+  "Delete text from BEG to END with TYPE. Do not save it in any register."
+  (interactive "<R><x><y>")
+  (evil-delete beg end type ?_ yank-handler))
+(define-key evil-normal-state-map "d" 'evil-delete-into-null-register)
 
 ;; Theme
 (load-theme 'gruvbox t)
