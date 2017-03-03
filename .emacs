@@ -1,6 +1,18 @@
 ;; Set font
 (set-default-font "monaco 12")
 
+;; change default scratch buffer message
+(setq initial-scratch-message "   : meain")
+
+;; enable clipboard
+(setq x-select-enable-clipboard t)
+
+;disable backup
+(setq backup-inhibited t)
+
+;disable auto save
+(setq auto-save-default nil)
+
 (require 'package)
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -37,14 +49,28 @@ Return a list of installed packages or nil for every skipped package."
                           'magit
 			  'helm
 			  `powerline
-			  `powerline-evil)
+			  `powerline-evil
+			  `evil-leader
+			  `smooth-scrolling
+			  `flycheck
+			  `simpleclip
+			  `autopair
+			  `saveplace
+			  `ido
+			  `auto-complete
+			  `evil-commentary
+			  `evil-surround
+			  `git-gutter
+			  `drag-stuff
+			  `evil-surround
+			  `linum-relative)
 
 ;; Evil mode
 (require 'evil)
 (evil-mode t)
 
 ;; Theme
-(load-theme 'misterioso t)
+(load-theme 'gruvbox t)
 
 ;; Set up leader key in emacs
 (global-evil-leader-mode)
@@ -208,7 +234,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     ("e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8" default)))
  '(global-linum-mode t)
  '(inhibit-startup-screen t)
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(package-selected-packages
+   (quote
+    (rainbow-mode neotree linum-relative drag-stuff git-gutter evil-surround evil-commentary autopair simpleclip flycheck smooth-scrolling projectile powerline-evil magit helm gruvbox-theme evil-search-highlight-persist evil-leader auto-complete))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
