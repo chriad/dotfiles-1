@@ -4,14 +4,14 @@
 ;; change default scratch buffer message
 (setq initial-scratch-message "   : meain")
 
-;; enable clipboard
-(setq x-select-enable-clipboard t)
-
 ;disable backup
 (setq backup-inhibited t)
 
 ;disable auto save
 (setq auto-save-default nil)
+
+;; no line wrapping
+(setq-default truncate-lines 1)
 
 (require 'package)
 
@@ -53,7 +53,7 @@ Return a list of installed packages or nil for every skipped package."
 			  `evil-leader
 			  `smooth-scrolling
 			  `flycheck
-			  `simpleclip
+			  ;; `simpleclip
 			  `autopair
 			  `saveplace
 			  `ido
@@ -97,6 +97,9 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; Magit call
 (evil-leader/set-key "g" `magit-status)
+
+;; buffer list easy open
+(evil-leader/set-key "b" `helm-buffers-list)
 
 ;; Set up helm
 (require 'helm-config)
@@ -153,8 +156,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Simple clipboard
-(require 'simpleclip)
-(simpleclip-mode 1)
+;; (require 'simpleclip)
+;; (simpleclip-mode 1)
 
 ;; Autopair
 (require 'autopair)
@@ -206,9 +209,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key "v" (lambda () (interactive) (split-window-right) (windmove-right)))
 
 ;; Relative and absolutr numberig
-(require 'linum-relative)
-(linum-relative-on)
-(setq linum-relative-current-symbol "")
+;; (require 'linum-relative)
+;; (linum-relative-on)
+;; (setq linum-relative-current-symbol "")
 
 ;; Easier buffer switching
 (define-key evil-normal-state-map (kbd "H") `windmove-left)
@@ -227,9 +230,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Disable the annoying bell
 (setq ring-bell-function 'ignore)
-
-;; Don't touch my clipboard
-(setq x-select-enable-clipboard nil)
 
 ;; Start maximized
 (custom-set-variables
