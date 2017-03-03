@@ -13,6 +13,12 @@
 ;; no line wrapping
 (setq-default truncate-lines 1)
 
+;; line highlight
+(global-hl-line-mode 1)
+
+;; Set location for external packages.
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
 (require 'package)
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -53,24 +59,24 @@ Return a list of installed packages or nil for every skipped package."
 			  `evil-leader
 			  `smooth-scrolling
 			  `flycheck
-			  ;; `simpleclip
 			  `autopair
 			  `saveplace
 			  `ido
 			  `auto-complete
 			  `evil-commentary
 			  `evil-surround
+			  `evil-search-highlight-persist
 			  `git-gutter
 			  `drag-stuff
-			  `evil-surround)
+			  `evil-surround
+			  `gruvbox-theme)
 
 ;; Evil mode
 (require 'evil)
 (evil-mode t)
 
 ;; yank and copy to clipboard (rest everything into the kill rig)
-;; (with-eval-after-load 'evil-maps
-;;   (define-key evil-normal-state-map (kbd "d") 'kill))
+;; stil have issue with c and x
 (evil-define-operator evil-delete-into-null-register (beg end type register yank-handler)
   "Delete text from BEG to END with TYPE. Do not save it in any register."
   (interactive "<R><x><y>")
@@ -125,6 +131,14 @@ Return a list of installed packages or nil for every skipped package."
 (require 'flycheck)
 (global-flycheck-mode)
 
+;; better find file maybe
+(autoload 'find-file-in-project "find-file-in-project" nil t)
+(autoload 'find-file-in-project-by-selected "find-file-in-project" nil t)
+(autoload 'find-directory-in-project-by-selected "find-file-in-project" nil t)
+(autoload 'ffip-show-diff "find-file-in-project" nil t)
+(autoload 'ffip-save-ivy-last "find-file-in-project" nil t)
+(autoload 'ffip-ivy-resume "find-file-in-project" nil t)
+
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
   "Abort recursive edit.
@@ -155,9 +169,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Automateic indentation
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-;; Simple clipboard
-;; (require 'simpleclip)
-;; (simpleclip-mode 1)
+;; opening recent files
+(require `recentf)
+(define-key evil-normal-state-map (kbd ", ,") `helm-recentf)
 
 ;; Autopair
 (require 'autopair)
@@ -208,11 +222,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key "h" (lambda () (interactive) (split-window-below) (windmove-down)))
 (evil-leader/set-key "v" (lambda () (interactive) (split-window-right) (windmove-right)))
 
-;; Relative and absolutr numberig
-;; (require 'linum-relative)
-;; (linum-relative-on)
-;; (setq linum-relative-current-symbol "")
-
 ;; Easier buffer switching
 (define-key evil-normal-state-map (kbd "H") `windmove-left)
 (define-key evil-normal-state-map (kbd "J") `windmove-down)
@@ -245,7 +254,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (rainbow-mode neotree linum-relative drag-stuff git-gutter evil-surround evil-commentary autopair simpleclip flycheck smooth-scrolling projectile powerline-evil magit helm gruvbox-theme evil-search-highlight-persist evil-leader auto-complete))))
+    (init-open-recentf magit-find-file find-things-fast helm-fuzzy-find highlight-current-line rainbow-mode neotree linum-relative drag-stuff git-gutter evil-surround evil-commentary autopair simpleclip flycheck smooth-scrolling projectile powerline-evil magit helm gruvbox-theme evil-search-highlight-persist evil-leader auto-complete))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
