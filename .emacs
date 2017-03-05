@@ -1,8 +1,9 @@
 ;; Set font
 (set-default-font "monaco 13")
 
-;; change default scratch buffer message
+;; change default scratch buffer message and change it to orgmode
 (setq initial-scratch-message "   : meain")
+(setq initial-major-mode 'markdown-mode)
 
 ;disable backup
 (setq backup-inhibited t)
@@ -67,7 +68,8 @@ Return a list of installed packages or nil for every skipped package."
 			  `evil-surround
 			  `gruvbox-theme
 			  `spaceline
-			  `diff-hl)
+			  `diff-hl
+			  `markdown-mode+)
 
 ;; Evil mode
 (require 'evil)
@@ -85,6 +87,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-theme 'gruvbox t)
 
 ;; Set up leader key in emacs
+(require `evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 
