@@ -28,7 +28,6 @@
 ;; Handle installing packages in emacs
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
-
 Return a list of installed packages or nil for every skipped package."
   (mapcar
    (lambda (package)
@@ -66,7 +65,9 @@ Return a list of installed packages or nil for every skipped package."
 			  `git-gutter
 			  `drag-stuff
 			  `evil-surround
-			  `gruvbox-theme)
+			  `gruvbox-theme
+			  `spaceline
+			  `diff-hl)
 
 ;; Evil mode
 (require 'evil)
@@ -104,6 +105,12 @@ Return a list of installed packages or nil for every skipped package."
 ;; buffer list easy open
 (evil-leader/set-key "b" `helm-buffers-list)
 
+;; shortcut to save current buffer
+(evil-leader/set-key "w" `evil-save)
+
+;; easy quitting of buffer/window
+(evil-leader/set-key "q" `evil-save-and-close)
+
 ;; Set up helm
 (require 'helm-config)
 (helm-mode 1)
@@ -136,14 +143,6 @@ Return a list of installed packages or nil for every skipped package."
 ;; flycheck
 (require 'flycheck)
 (global-flycheck-mode)
-
-;; better find file maybe
-(autoload 'find-file-in-project "find-file-in-project" nil t)
-(autoload 'find-file-in-project-by-selected "find-file-in-project" nil t)
-(autoload 'find-directory-in-project-by-selected "find-file-in-project" nil t)
-(autoload 'ffip-show-diff "find-file-in-project" nil t)
-(autoload 'ffip-save-ivy-last "find-file-in-project" nil t)
-(autoload 'ffip-ivy-resume "find-file-in-project" nil t)
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
@@ -192,17 +191,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Remember cursor positon
 (require 'saveplace)
-(save-place-mode t)
+(setq save-place-file "~/.emacs.d/saveplace") ;; keep my ~/ clean
+(setq-default save-place t)                   ;; activate it for all buffers
+
 
 ;; Remove unnecessary stuff
 (scroll-bar-mode -1)
 (menu-bar-mode -1) 
 (tool-bar-mode -1) 
-
-;; CtrlP ish thing
-(require 'ido)
-(ido-mode t)
-(define-key evil-normal-state-map (kbd ", ,") `ido-find-file)
 
 ;; Remap to kill all other buffers
 (evil-leader/set-key "o" (kbd "C-x 1"))
@@ -225,6 +221,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'drag-stuff)
 (drag-stuff-mode t)
 (drag-stuff-global-mode 1)
+(drag-stuff-define-keys)
 
 ;; Split like vim
 (evil-leader/set-key "h" (lambda () (interactive) (split-window-below) (windmove-down)))
@@ -253,9 +250,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Disable the annoying bell
 (setq ring-bell-function 'ignore)
-
-;; Don't touch my clipboard
-(setq x-select-enable-clipboard nil)
 
 ;; Chage scratch buffer message
 (setq initial-scratch-message ":meain\n\n")

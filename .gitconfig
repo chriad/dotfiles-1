@@ -18,3 +18,5 @@
 	editor = nvim
 [diff "spaceman-diff"]
   command = /Users/abinsimon/.config/spaceman-diff/spaceman-diff
+[credential]
+	helper = cache
