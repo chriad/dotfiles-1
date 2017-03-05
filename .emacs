@@ -172,6 +172,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; opening recent files
 (require `recentf)
 (define-key evil-normal-state-map (kbd ", ,") `helm-recentf)
+;; helm-recentf-fuzzy-match var is broken: redeclare it manually
+(setq helm-source-recentf 
+  (helm-make-source "Recentf" 'helm-recentf-source
+    :fuzzy-match t))
 
 ;; Autopair
 (require 'autopair)

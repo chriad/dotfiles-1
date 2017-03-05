@@ -49,7 +49,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git python brew osx extract web-search zsh-syntax-highlighting)
+plugins=(git python osx extract web-search zsh-syntax-highlighting)
 
 # User configuration
 
@@ -239,9 +239,6 @@ alias eywaserver='~/bin/tmuxeywavim.sh'
 
 # Youtube-dl
 alias ydp='youtube-dl -o "%(playlist_index)s_%(title)s.%(ext)s"'
-
-# Use hub instead of git
-eval "$(hub alias -s)"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -39,9 +39,6 @@ alias server='python -m SimpleHTTPServer '
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
 
-eval $(thefuck --alias)
-
-parse_git_branch() {
 
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 
@@ -80,4 +77,3 @@ alias g='git status'
 alias gc='git commit'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-if [ -f $(brew --prefix)/etc/bash_completion ]; then source $(brew --prefix)/etc/bash_completion; fi
