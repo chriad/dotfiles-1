@@ -2,8 +2,16 @@
 (set-default-font "monaco 13")
 
 ;; change default scratch buffer message and change it to orgmode
-(setq initial-scratch-message "   : meain")
+;; (setq initial-scratch-message "   : meain")
 (setq initial-major-mode 'markdown-mode)
+;; make scratch buffer immortal
+(defun immortal-scratch ()
+  (if (eq (current-buffer) (get-buffer "*scratch*"))
+  (progn (bury-buffer)
+     nil)
+t))
+(add-hook 'kill-buffer-query-functions 'immortal-scratch)
+
 
 ;disable backup
 (setq backup-inhibited t)
@@ -17,11 +25,15 @@
 ;; line highlight
 (global-hl-line-mode 1)
 
-(require 'package)
+;; change all prompts to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
 
+;; set up package
+(require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -69,11 +81,20 @@ Return a list of installed packages or nil for every skipped package."
 			  `gruvbox-theme
 			  `spaceline
 			  `diff-hl
-			  `markdown-mode+)
+			  `markdown-mode+
+			  `persistent-scratch
+			  `neotree
+			  `minimap
+			  `rainbow-mode
+			  `rainbow-delimiters
+			  `elpy)
 
 ;; Evil mode
 (require 'evil)
 (evil-mode t)
+
+;; enable elpy, yeah its mostly python here
+(elpy-enable)
 
 ;; yank and copy to clipboard (rest everything into the kill rig)
 ;; stil have issue with c and x
@@ -112,7 +133,10 @@ Return a list of installed packages or nil for every skipped package."
 (evil-leader/set-key "w" `evil-save)
 
 ;; easy quitting of buffer/window
-(evil-leader/set-key "q" `evil-save-and-close)
+(evil-leader/set-key "q" `evil-delete-buffer)
+
+;; start shell with leader t
+(evil-leader/set-key "t" `term)
 
 ;; Set up helm
 (require 'helm-config)
@@ -213,6 +237,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require `auto-complete)
 (ac-config-default)
 
+;; persistant scratch buffer - so cool
+(persistent-scratch-setup-default)
+
 ;; Comment out stuff easily
 (evil-commentary-mode)
 
@@ -225,6 +252,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (drag-stuff-mode t)
 (drag-stuff-global-mode 1)
 (drag-stuff-define-keys)
+
+;; easier viewing of delimiters
+(require `rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;; Split like vim
 (evil-leader/set-key "h" (lambda () (interactive) (split-window-below) (windmove-down)))
@@ -254,8 +285,32 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Disable the annoying bell
 (setq ring-bell-function 'ignore)
 
-;; Chage scratch buffer message
-(setq initial-scratch-message ":meain\n\n")
+;; for now, the clipboard thing is messy
+(defun copy-to-clipboard ()
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (message "Yanked region to x-clipboard!")
+        (call-interactively 'clipboard-kill-ring-save)
+        )
+    (if (region-active-p)
+        (progn
+          (shell-command-on-region (region-beginning) (region-end) "xsel -i -b")
+          (message "Yanked region to clipboard!")
+          (deactivate-mark))
+      (message "No region active; can't yank to clipboard!")))
+  )
+(evil-define-command paste-from-clipboard()
+  (if (display-graphic-p)
+      (progn
+        (clipboard-yank)
+        (message "graphics active")
+        )
+    (insert (shell-command-to-string "xsel -o -b"))
+    )
+  )
+(global-set-key [f8] 'copy-to-clipboard)
+(global-set-key [f9] 'paste-from-clipboard)
 
 ;; Start maximized
 (custom-set-variables
@@ -271,7 +326,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (init-open-recentf magit-find-file find-things-fast helm-fuzzy-find highlight-current-line rainbow-mode neotree linum-relative drag-stuff git-gutter evil-surround evil-commentary autopair simpleclip flycheck smooth-scrolling projectile powerline-evil magit helm gruvbox-theme evil-search-highlight-persist evil-leader auto-complete))))
+    (init-open-recentf magit-find-file find-things-fast helm-fuzzy-find highlight-current-line rainbow-mode neotree linum-relative drag-stuff git-gutter evil-surround evil-commentary autopair simpleclip flycheck smooth-scrolling projectile powerline-evil magit helm gruvbox-theme evil-search-highlight-persist evil-leader auto-complete)))
+ '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
