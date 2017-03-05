@@ -1,5 +1,5 @@
 ;; Set font
-(set-default-font "monaco 12")
+(set-default-font "monaco 13")
 
 ;; change default scratch buffer message
 (setq initial-scratch-message "   : meain")
@@ -112,20 +112,29 @@ Return a list of installed packages or nil for every skipped package."
 (helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
-(define-key evil-normal-state-map (kbd ", ,") 'helm-projectile)
 
 ;; Smoother scrolling
 (require 'smooth-scrolling)
 (smooth-scrolling-mode 1)
 
-;; Power line ;)
-(require 'powerline)
-(require 'powerline-evil)
-(powerline-evil-vim-color-theme)
+;; Powerline
+(require 'spaceline)
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
+(spaceline-toggle-minor-modes-off)
+(spaceline-toggle-hud-off)
+(setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+(setq powerline-height 20)
+(setq powerline-raw " ")
+(setq ns-use-srgb-colorspace nil)
 
 ;; j/k for wrapped lines
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+;; other evil remaps
+(evil-leader/set-key "q" `evil-quit)
+(evil-leader/set-key "w" `evil-write)
 
 ;; flycheck
 (require 'flycheck)
@@ -186,7 +195,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Remember cursor positon
 (require 'saveplace)
-(setq-default save-place t)
+(save-place-mode t)
 
 ;; Remove unnecessary stuff
 (scroll-bar-mode -1)
@@ -196,7 +205,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; CtrlP ish thing
 (require 'ido)
 (ido-mode t)
-(define-key evil-normal-state-map (kbd ", m") `ido-find-file)
+(define-key evil-normal-state-map (kbd ", ,") `ido-find-file)
 
 ;; Remap to kill all other buffers
 (evil-leader/set-key "o" (kbd "C-x 1"))
@@ -215,16 +224,20 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
-;; Git gutter
-(global-git-gutter-mode +1)
-
 ;; Like drag visuals
+(require 'drag-stuff)
 (drag-stuff-mode t)
 (drag-stuff-global-mode 1)
 
 ;; Split like vim
 (evil-leader/set-key "h" (lambda () (interactive) (split-window-below) (windmove-down)))
 (evil-leader/set-key "v" (lambda () (interactive) (split-window-right) (windmove-right)))
+
+(global-linum-mode)
+
+;; Git gutter
+(diff-hl-flydiff-mode t)
+(global-diff-hl-mode t)
 
 ;; Easier buffer switching
 (define-key evil-normal-state-map (kbd "H") `windmove-left)
@@ -244,6 +257,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Disable the annoying bell
 (setq ring-bell-function 'ignore)
 
+;; Don't touch my clipboard
+(setq x-select-enable-clipboard nil)
+
+;; Chage scratch buffer message
+(setq initial-scratch-message ":meain\n\n")
+
 ;; Start maximized
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -259,7 +278,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(package-selected-packages
    (quote
     (init-open-recentf magit-find-file find-things-fast helm-fuzzy-find highlight-current-line rainbow-mode neotree linum-relative drag-stuff git-gutter evil-surround evil-commentary autopair simpleclip flycheck smooth-scrolling projectile powerline-evil magit helm gruvbox-theme evil-search-highlight-persist evil-leader auto-complete))))
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
