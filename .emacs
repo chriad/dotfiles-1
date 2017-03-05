@@ -16,9 +16,6 @@
 ;; line highlight
 (global-hl-line-mode 1)
 
-;; Set location for external packages.
-(add-to-list 'load-path "~/.emacs.d/lisp")
-
 (require 'package)
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
