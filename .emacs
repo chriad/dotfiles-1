@@ -28,6 +28,9 @@ t))
 ;; change all prompts to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; set default tab width
+(setq-default tab-width 4)
+
 ;; set up package
 (require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -311,6 +314,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   )
 (global-set-key [f8] 'copy-to-clipboard)
 (global-set-key [f9] 'paste-from-clipboard)
+
+
+;; Maximize current buffer
+(defun toggle-maximize-buffer () "Maximize buffer"
+  (interactive)
+  (if (= 1 (length (window-list)))
+      (jump-to-register '_) 
+    (progn
+      (window-configuration-to-register '_)
+      (delete-other-windows))))
+(define-key evil-normal-state-map (kbd "-") `toggle-maximize-buffer)
 
 ;; Start maximized
 (custom-set-variables
