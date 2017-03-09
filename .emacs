@@ -1,5 +1,5 @@
 ;; Set font
-(set-default-font "monaco 13")
+(set-default-font "monaco 12")
 
 ;; change default scratch buffer message and change it to orgmode
 ;; (setq initial-scratch-message "   : meain")
@@ -208,7 +208,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require `recentf)
 (define-key evil-normal-state-map (kbd ", ,") `helm-recentf)
 ;; helm-recentf-fuzzy-match var is broken: redeclare it manually
-(setq helm-source-recentf 
+(setq helm-source-recentf
   (helm-make-source "Recentf" 'helm-recentf-source
     :fuzzy-match t))
 
@@ -227,8 +227,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Remove unnecessary stuff
 (scroll-bar-mode -1)
-(menu-bar-mode -1) 
-(tool-bar-mode -1) 
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; Remap to kill all other buffers
 (evil-leader/set-key "o" (kbd "C-x 1"))
@@ -320,11 +320,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (defun toggle-maximize-buffer () "Maximize buffer"
   (interactive)
   (if (= 1 (length (window-list)))
-      (jump-to-register '_) 
+      (jump-to-register '_)
     (progn
       (window-configuration-to-register '_)
       (delete-other-windows))))
 (define-key evil-normal-state-map (kbd "-") `toggle-maximize-buffer)
+
+
+;; Visible whitespace
+(setq whitespace-style '(trailing tabs newline tab-mark newline-mark))
 
 ;; Start maximized
 (custom-set-variables
@@ -334,17 +338,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8" default)))
+	("e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8" default)))
  '(global-linum-mode t)
  '(inhibit-startup-screen t)
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (init-open-recentf magit-find-file find-things-fast helm-fuzzy-find highlight-current-line rainbow-mode neotree linum-relative drag-stuff git-gutter evil-surround evil-commentary autopair simpleclip flycheck smooth-scrolling projectile powerline-evil magit helm gruvbox-theme evil-search-highlight-persist evil-leader auto-complete)))
+	(init-open-recentf magit-find-file find-things-fast helm-fuzzy-find highlight-current-line rainbow-mode neotree linum-relative drag-stuff git-gutter evil-surround evil-commentary autopair simpleclip flycheck smooth-scrolling projectile powerline-evil magit helm gruvbox-theme evil-search-highlight-persist evil-leader auto-complete)))
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(trailing-whitespace ((t (:background "dim gray")))))
