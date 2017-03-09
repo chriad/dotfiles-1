@@ -149,7 +149,7 @@ alias ta='tmux attach -t'
 # when opened from terminal, open emacs in terminal mode
 alias emacs='emacs -nw'
 # savage
-alias vim='emacs -nw'
+alias vim='emacs'
 
 # Alias to open multimedia folder in finder
 alias m='cd ~/Documents/Multimedia && open . && cd -'
