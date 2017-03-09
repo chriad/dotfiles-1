@@ -148,6 +148,8 @@ alias ta='tmux attach -t'
 
 # when opened from terminal, open emacs in terminal mode
 alias emacs='emacs -nw'
+# savage
+alias vim='emacs -nw'
 
 # Alias to open multimedia folder in finder
 alias m='cd ~/Documents/Multimedia && open . && cd -'
@@ -225,14 +227,8 @@ alias tl='tmux list-sessions'
 alias tksv='tmux kill-server'
 alias tkss='tmux kill-session -t'
 
-#eeeks
-alias vim="nvim"
-#Just because it happens all the time
-alias ivm='vim'
-alias vm='nvim'
-alias vi='nvim'
-#Open last vim session
-alias viml='nvim -c :SLoad\ zPreviousSession'
+# nvim open last session
+alias nviml='nvim -c :SLoad\ zPreviousSession'
 
 # Note taking
 alias k="python ~/bin/terminalnote.py"
