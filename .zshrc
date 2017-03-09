@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/meain/.oh-my-zsh
+export ZSH=/home/meain/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -113,6 +113,9 @@ rmd () {
 
 # source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval $(thefuck --alias)
+
+# configure z
+. /home/meain/.local/share/z.sh
 
 # Use vi mode in zshell
 bindkey -v
